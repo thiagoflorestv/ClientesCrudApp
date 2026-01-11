@@ -1,0 +1,36 @@
+﻿@model Clientes.Application.DTOs.ClienteDto
+
+<h1>Detalhes do Cliente</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Razão Social</dt>
+        <dd class="col-sm-10">@Model.RazaoSocial</dd>
+
+        <dt class="col-sm-2">Nome Fantasia</dt>
+        <dd class="col-sm-10">@Model.NomeFantasia</dd>
+
+        <dt class="col-sm-2">Tipo Pessoa</dt>
+        <dd class="col-sm-10">@Model.TipoPessoa</dd>
+
+        <dt class="col-sm-2">Documento</dt>
+        <dd class="col-sm-10">@Model.Documento</dd>
+
+        <dt class="col-sm-2">Endereço</dt>
+        <dd class="col-sm-10">@Model.Endereco, @Model.Complemento, @Model.Bairro, @Model.Cidade - @Model.UF, CEP: @Model.CEP</dd>
+
+        @* <dt class="col-sm-2">Telefones</dt>
+        <dd class="col-sm-10">
+            @if (Model.Telefones != null)
+            {
+                <ul>
+                    @foreach (var tel in Model.Telefones)
+                    {
+                        <li>@tel.NumeroTelefone (@tel.TipoTelefone?.DescricaoTipoTelefone) - @tel.Operadora</li>
+                    }
+                </ul>
+            }
+        </dd> *@
+    </dl>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Voltar</a>
+</div>

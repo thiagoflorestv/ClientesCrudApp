@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Clientes.Application.DTOs.ClienteDto>
+
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "_Layout";
+}
+
+<h1>Clientes</h1>
+
+<a href="@Url.Action("Create", "Cliente")" class="btn btn-success mb-3">Cadastrar Novo Cliente</a>
+
+<table class="table table-striped" id="tableClientes">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Razão Social</th>
+            <th>Nome Fantasia</th>
+            <th>Tipo Pessoa</th>
+            <th>Documento</th>
+            <th>Endereço</th>
+            <th>Complemento</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>CEP</th>
+            <th>UF</th>
+            <th>Data Inserção</th>
+            <th>Usuário Inserção</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.CodigoCliente</td>
+                <td>@cliente.RazaoSocial</td>
+                <td>@cliente.NomeFantasia</td>
+                <td>@cliente.TipoPessoa</td>
+                <td>@cliente.Documento</td>
+                <td>@cliente.Endereco</td>
+                <td>@cliente.Complemento</td>
+                <td>@cliente.Bairro</td>
+                <td>@cliente.Cidade</td>
+                <td>@cliente.CEP</td>
+                <td>@cliente.UF</td>
+                <td>@cliente.DataInsercao?.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@cliente.UsuarioInsercao</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Cliente", new { id = cliente.CodigoCliente })" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="@Url.Action("Delete", "Cliente", new { id = cliente.CodigoCliente })" class="btn btn-danger btn-sm">Excluir</a>
+                    <a href="@Url.Action("Details", "Cliente", new { id = cliente.CodigoCliente })" class="btn btn-info btn-sm">Detalhes</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tableClientes').DataTable({
+                pageLength: 10,
+                responsive: true,
+                language: {
+                    search: "Buscar:",
+                    lengthMenu: "Mostrar _MENU_ registros por página",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ clientes",
+                    paginate: { previous: "Anterior", next: "Próximo" },
+                    zeroRecords: "Nenhum cliente encontrado"
+                }
+            });
+        });
+    </script>
+}
