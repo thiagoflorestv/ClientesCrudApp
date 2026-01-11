@@ -154,3 +154,5 @@ Configuração de conexão via appsettings.json
 JavaScript apenas para UX e validação (não lógica de negócio)
 
 Código limpo e modular
+
+GitHub - https://github.com/thiagoflorestv/ClientesCrudApp
